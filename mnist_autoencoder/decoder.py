@@ -5,7 +5,7 @@ from keras.models import Model
 from keras import backend as K
 
 
-def build_decoder(shape, latent_dim, layer_filters=[32,64], kernel_size):
+def build_decoder(shape, latent_dim, layer_filters, kernel_size) :
     latent_inputs = Input(shape=(latent_dim,), name='decoder_input')
     x = Dense(shape[1] * shape[2] * shape[3])(latent_inputs)
     x = Reshape((shape[1], shape[2], shape[3]))(x)

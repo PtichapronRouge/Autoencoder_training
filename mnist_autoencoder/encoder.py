@@ -5,7 +5,7 @@ from keras.models import Model
 from keras import backend as K
 
 
-def build_encoder(image_size, latent_dim=16, layer_filters=[32,64]):
+def build_encoder(image_size, latent_dim, layer_filters, kernel_size):
     input_shape = (image_size, image_size, 1)
     batch_size = 128
     kernel_size = 3
