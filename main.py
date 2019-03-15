@@ -7,10 +7,6 @@ from keras.callbacks import TensorBoard
 import sys
 import os
 
-run_name = "linear"
-log_path = generate_unique_logpath("./logs_linear", run_name)
-tbcb = TensorBoard(log_dir=log_path)
-
 def generate_unique_logpath(logdir, raw_run_name):
     i = 0
     while(True):
@@ -18,7 +14,11 @@ def generate_unique_logpath(logdir, raw_run_name):
         log_path = os.path.join(logdir, run_name)
         if not os.path.isdir(log_path):
             return log_path
-        i++
+        i += 1
+
+run_name = "linear"
+log_path = generate_unique_logpath("./logs_linear", run_name)
+tbcb = TensorBoard(log_dir=log_path)
 
 act='softmax'
 if len(sys.argv) > 1:
