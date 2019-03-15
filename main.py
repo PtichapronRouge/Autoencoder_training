@@ -1,9 +1,24 @@
 from keras.datasets import mnist
 from keras.utils import to_categorical
-
-from keras.layers import Input, Dense, Activation
+from keras.layers import Input, Dense, Activation, Lambda
 from keras.models import Model
+from keras.callbacks import TensorBoard
+
 import sys
+import os
+
+run_name = "linear"
+log_path = generate_unique_logpath("./logs_linear", run_name)
+tbcb = TensorBoard(log_dir=log_path)
+
+def generate_unique_logpath(logdir, raw_run_name):
+    i = 0
+    while(True):
+        run_name = raw_run_name + "-" + str(i)
+        log_path = os.path.join(logdir, run_name)
+        if not os.path.isdir(log_path):
+            return log_path
+        i++
 
 act='softmax'
 if len(sys.argv) > 1:
@@ -23,10 +38,14 @@ X_test  = X_test.reshape((n_test, img_width*img_height))
 y_train = to_categorical(y_train, num_classes=10)
 y_test  = to_categorical(y_test, num_classes=10)
 
+mean = X_train.mean(axis=0)
+std  = X_train.std(axis=0) + 1e-5
+
 num_classes = 10
-xi = Input(shape=(img_width*img_height,))
-xo = Dense(num_classes)(xi)
-yo = Activation(act)(xo)
+xi = Input(shape=(img_width*img_height,), name="input")
+xl = Lambda(lambda image, mu, std: (image-mu)/std, arguments={'mu': mean, 'std': std})(xi)
+xo = Dense(num_classes, name='y')(xl)
+yo = Activation(act, name='y_act')(xo)
 model = Model(inputs=[xi], outputs=[yo])
 
 model.summary()
