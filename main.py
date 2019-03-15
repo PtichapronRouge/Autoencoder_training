@@ -7,7 +7,7 @@ import sys
 
 act='softmax'
 if len(sys.argv) > 1:
-    act=str(sys.argv[1@])
+    act=str(sys.argv[1])
 
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
