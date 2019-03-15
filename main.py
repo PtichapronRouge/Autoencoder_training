@@ -3,6 +3,11 @@ from keras.utils import to_categorical
 
 from keras.layers import Input, Dense, Activation
 from keras.models import Model
+import sys
+
+act='softmax'
+if len(sys.argv) > 1:
+    act=str(sys.argv[1@])
 
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
@@ -21,7 +26,7 @@ y_test  = to_categorical(y_test, num_classes=10)
 num_classes = 10
 xi = Input(shape=(img_width*img_height,))
 xo = Dense(num_classes)(xi)
-yo = Activation('softmax')(xo)
+yo = Activation(act)(xo)
 model = Model(inputs=[xi], outputs=[yo])
 
 model.summary()
