@@ -28,4 +28,4 @@ def build_encoder(image_size, latent_dim, layer_filters, kernel_size):
     encoder = Model(inputs, latent, name='encoder')
     encoder.summary()
 
-    return encoder, shape
+    return inputs, encoder, shape

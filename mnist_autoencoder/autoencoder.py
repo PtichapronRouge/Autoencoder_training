@@ -22,7 +22,7 @@ batch_size = 128
 kernel_size = 3
 layer_filters = [32,64]
 
-encoder, shape = build_encoder(image_size, latent_dim, layer_filters, kernel_size)
+inputs, encoder, shape = build_encoder(image_size, latent_dim, layer_filters, kernel_size)
 decoder = build_decoder(shape, latent_dim, layer_filters, kernel_size)
 
 autoencoder = Model(inputs, decoder(encoder(inputs)), name='autoencoder')
