@@ -14,7 +14,7 @@ def build_decoder(shape, latent_dim, layer_filters=[32,64], kernel_size):
         x = Conv2DTranspose(filters=filters,
                             kernel_size=kernel_size,
                             strides=2,
-                            activation='relu'
+                            activation='relu',
                             padding='same')(x)
 
     x = Conv2DTranspose(filters=1,
