@@ -4,6 +4,7 @@ from keras.layers import Reshape, Conv2DTranspose
 from keras.models import Model
 from keras import backend as K
 from keras.datasets import mnist
+import numpy as np
 
 from encoder import build_encoder
 from decoder import build_decoder
