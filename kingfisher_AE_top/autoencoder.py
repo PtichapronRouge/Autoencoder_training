@@ -35,3 +35,10 @@ autoencoder = Model(input_img, decoded)
 print("Compiling Model")
 autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
+print("Training...")
+autoencoder.fit(data, data,
+                epochs=20,
+                batch_size=64,
+                shuffle=True,
+                validation_split=0.1)
+
