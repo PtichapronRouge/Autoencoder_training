@@ -23,9 +23,13 @@ input_img = Input(shape=input_shape)
 x = Conv2D(16, (5,5), activation='relu', padding='same')(input_img) #512*512
 x = MaxPooling2D((4,4), padding='same')(x)                          #128*128
 x = Conv2D(8, (5,5), activation='relu', padding='same')(x)          #128*128
+x = MaxPooling2D((4,4), padding='same')(x)                    #32*32
+x = Conv2D(8, (5,5), activation='relu', padding='same')(x)          #128*128
 encoded = MaxPooling2D((4,4), padding='same')(x)                    #32*32
 
 x = Conv2D(8, (5,5), activation='relu', padding='same')(encoded)
+x = UpSampling2D((4,4))(x)
+x = Conv2D(8, (5,5), activation='relu', padding='same')(x)
 x = UpSampling2D((4,4))(x)
 x = Conv2D(16, (5,5), activation='relu', padding='same')(x)
 x = UpSampling2D((4,4))(x)
