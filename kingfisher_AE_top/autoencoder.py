@@ -5,7 +5,7 @@ import numpy as np
 import sys
 
 data_path = "/tmp/data.npy"
-if len(sys.argv > 1):
+if len(sys.argv) > 1:
     data_path = str(sys.argv[1])
 
 data = np.load(data_path)
