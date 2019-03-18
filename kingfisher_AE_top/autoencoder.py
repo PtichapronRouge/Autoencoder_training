@@ -15,8 +15,8 @@ image_size = data.shape[1]
 input_shape=(image_size,image_size,1)
 
 print("Generating layers...")
-X_train = np.reshape(X_train, [-1, image_size, image_size, 1])
-X_train = X_train.astype('float32')/255
+data = np.reshape(data, [-1, image_size, image_size, 1])
+data = data.astype('float32')/255
 
 input_img = Input(shape=input_shape)
 
