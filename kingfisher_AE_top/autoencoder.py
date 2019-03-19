@@ -37,7 +37,9 @@ decoded = Conv2D(1, (5,5), activation='relu', padding='same')(x)
 
 autoencoder = Model(input_img, decoded)
 print("Compiling Model")
-autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+autoencoder.compile(optimizer='adadelta',
+                    loss='binary_crossentropy',
+                    metrics=['loss', 'accuracy'])
 
 print("Training...")
 autoencoder.fit(data, data,
@@ -45,4 +47,3 @@ autoencoder.fit(data, data,
                 batch_size=64,
                 shuffle=True,
                 validation_split=0.1)
-
